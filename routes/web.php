@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +20,13 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('backend.pages.dashboard');
+    return view('backend.pages.dashboard', [
+        'message' => 'Your action was successful!',
+        'type' => 'warning',
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::resource('posts', PostController::class)->middleware('auth');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
