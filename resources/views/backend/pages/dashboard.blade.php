@@ -24,7 +24,7 @@
                         {{-- @php
                             $message = 'Your action was successful!';
                         @endphp --}}
-                        <x-alert :message="$message" :type="$type" class="mb-4" />
+                        {{-- <x-alert :message="$message" :type="$type" class="mb-4" /> --}}
                         <form method="post" action="{{ route('posts.store') }}">
                             @csrf
                             <div class="card-body">
