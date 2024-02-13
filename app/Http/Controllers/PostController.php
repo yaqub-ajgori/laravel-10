@@ -12,7 +12,18 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        // $posts = Post::where('user_id', auth()->id())->get();
+        $posts = Post::active()->get();
+        // $userPost = auth()->user()->posts;
+
+        // $posts = Post::all()->map( function ($post) {
+        //     return $post->title;
+        // });
+
+        // $posts = Post::pluck('title', 'id')->toArray();
+
+        // dd($posts);
+        return view('backend.pages.dashboard', compact('posts'));
     }
 
     /**

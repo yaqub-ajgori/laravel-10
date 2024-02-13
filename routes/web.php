@@ -19,12 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('backend.pages.dashboard', [
-        'message' => 'Your action was successful!',
-        'type' => 'warning',
-    ]);
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [PostController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::resource('posts', PostController::class)->middleware('auth');
 

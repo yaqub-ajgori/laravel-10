@@ -19,6 +19,7 @@ class PostFactory extends Factory
         return [
             'title' => $this->faker->sentence,
             'content' => $this->faker->paragraph,
+            'user_id' => \App\Models\User::factory(),
             'status' => $this->faker->boolean,
         ];
     }

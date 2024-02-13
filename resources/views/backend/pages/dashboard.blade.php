@@ -16,44 +16,40 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-6">
-                    <div class="card card-primary">
+                <div class="col-md-12">
+                    <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Quick Example</h3>
+                            <h3 class="card-title
+                            ">Post With User</h3>
                         </div>
-                        {{-- @php
-                            $message = 'Your action was successful!';
-                        @endphp --}}
-                        {{-- <x-alert :message="$message" :type="$type" class="mb-4" /> --}}
-                        <form method="post" action="{{ route('posts.store') }}">
-                            @csrf
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <x-form.label>
-                                        Title
-                                    </x-form.label>
-                                    <input name="title" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Title">
-                                    @error('title')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="form-group
-                                    <label for="exampleInputPassword1">Post Body</label>
-                                    <textarea name="content" class="form-control" id="exampleInputPassword1" placeholder="Enter Body"></textarea>
-                                    @error('content')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
-                        </form>
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Post ID</th>
+                                        <th>Post Title</th>
+                                        <th>Post Description</th>
+                                        <th>Post User</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($posts as $post)
+                                    <tr>
+                                        <td>{{ $post->id ?? '' }}</td>
+                                        <td>{{ $post->title?? '' }}</td>
+                                        <td>
+                                           {{-- {{ \Illuminate\Support\Str::words($post->content ?? '', 20, '...') }} --}}
+                                           {{ $post->short_content?? '' }}
+                                        </td>
+                                        <td>{{ $post->user->name ?? '' }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-
                 </div>
-
             </div>
-
         </div>
     </section>
 
